@@ -1,26 +1,30 @@
+import os
 from flask import request
 from flask import Flask
 from flask import Response
 from google.cloud import storage
 
 app = Flask(__name__)
+#ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+#UPLOAD_FOLDER = 'C:\\Users\\Maurice\\Documents\\GitHub\\Prototype_MH\\selfie-saver\\tmp'
+app.config['UPLOAD_FOLDER'] = 'C:\\Users\\Maurice\\Documents\\GitHub\\Prototype_MH\\selfie-saver\\tmp'
 
-@app.route('/', methods = ["GET","POST"])
+@app.route('/', methods = ['POST'])
+def file_upload():    
 
 
-
-def file_upload():
-
+    #if request.method == 'POST':
+    f = request.files['']
+    print(f)
     
-    try:
-
-        if request.method == "POST":
-            f = request.files['the_img']
-            upload_blob('testbarnes2197', f, 'newfile')
-            return 'Upload Success'
+    
+    f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
+    fpath = (os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
+    upload_blob('testbarnes2197', fpath, f.filename,)
+        #return 'Upload Success'
             #return Response('Upload Sucessful')
-    except:
-        return 'Upload Faield'
+    return "It worked"
+
         #return Response('Upload Failed')
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
@@ -32,9 +36,9 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
     blob.upload_from_filename(source_file_name)
 
-    print('File {} uploaded to {}.' .format(
+    print('File {} uploaded to {}.'.format(
         destination_blob_name,
         bucket_name
     ))
-
-print(file_upload())
+if __name__ == '__main__':
+   app.run(debug = True)
