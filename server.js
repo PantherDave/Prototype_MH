@@ -15,7 +15,7 @@ app.post('/', (req,res) => {
     console.log("hi")
     
     var busboy = new Busboy({ headers: req.headers});
-    busboy.on('image', function(fieldname, image, filename, encoding, mimetype) {
+    busboy.on('image', (fieldname, image, filename, encoding, mimetype) => {
         var saveTo = path.join(os.tmpDir(), path.basename(fieldname));
         file.pipe(fs.createWriteStream(saveTo));
     });
