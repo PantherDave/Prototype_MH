@@ -3,7 +3,7 @@ import './App.css';
 
 import axios from 'axios'
 
-const endpoint = 'http://localhost:8000'
+const endpoint = 'http://localhost:3000'
 
 class App extends Component {
   constructor() {
@@ -23,6 +23,12 @@ class App extends Component {
     const data = new FormData()
     data.append('file', this.state.selectedFile, this.state.selectedFile.name)
 
+    const config = {
+      headers: {
+      'Content-Type': 'multipart/form-data',
+      'accept' : 'multipart/form-data'
+    },
+  };
     axios.post(endpoint, data, {
         onUploadProgress: ProgressEvent => {
           this.setState({
