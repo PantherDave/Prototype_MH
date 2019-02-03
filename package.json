@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/PantherDave/Prototype_MH#readme",
   "dependencies": {
+    "@google-cloud/vision": "^0.24.0",
     "body-parser": "^1.18.3",
     "busboy": "^0.3.0",
+    "connect-busboy": "0.0.2",
     "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "express-busboy": "^7.0.1"
   }
 }
