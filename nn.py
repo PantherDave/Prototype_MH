@@ -6,7 +6,7 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D
 
 import pickle
 
-
+#hi
 X = pickle.load(open(r"C:\Users\stevo\OneDrive\Desktop\Datasets", "rb"))
 y = pickle.load(open(r"C:\Users\stevo\OneDrive\Desktop\Datasets", "rb"))
 
