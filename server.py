@@ -23,7 +23,8 @@ def file_upload():
     f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
     #fpath = (os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
     
-    #upload_blob('testbarnes2197', fpath, f.filename,)
+    #Insert AI algorithm
+    
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                f.filename, as_attachment=True)
 
